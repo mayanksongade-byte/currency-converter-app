@@ -759,7 +759,22 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
 
   void showCurrencySearchDialog(bool isFrom) {
     TextEditingController searchController = TextEditingController();
+
     List<String> filteredCurrencies = List.from(currencies);
+
+    void sortFavoritesOnTop() {
+      filteredCurrencies.sort((a, b) {
+        bool aFav = favoriteCurrencies.contains(a);
+        bool bFav = favoriteCurrencies.contains(b);
+
+        if (aFav && !bFav) return -1;
+        if (!aFav && bFav) return 1;
+
+        return a.compareTo(b);
+      });
+    }
+
+    sortFavoritesOnTop();
 
     showDialog(
       context: context,
@@ -767,39 +782,49 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
         return StatefulBuilder(
           builder: (context, setDialogState) {
             return AlertDialog(
-              backgroundColor: isDarkMode
-                  ? const Color(0xff1F2937)
-                  : Colors.white,
+              backgroundColor:
+              isDarkMode ? const Color(0xff1F2937) : Colors.white,
+
               title: TextField(
                 controller: searchController,
                 autofocus: true,
+
                 style: TextStyle(
                   color: isDarkMode ? Colors.white : Colors.black,
                 ),
+
                 decoration: InputDecoration(
                   hintText: "Search currency...",
+
                   hintStyle: TextStyle(
                     color: isDarkMode ? Colors.white54 : Colors.grey,
                   ),
+
                   prefixIcon: const Icon(Icons.search),
                 ),
+
                 onChanged: (value) {
                   setDialogState(() {
                     filteredCurrencies = currencies
                         .where(
-                          (currency) => currency.toLowerCase().contains(
-                            value.toLowerCase(),
-                          ),
-                        )
+                          (currency) => currency
+                          .toLowerCase()
+                          .contains(value.toLowerCase()),
+                    )
                         .toList();
+
+                    sortFavoritesOnTop();
                   });
                 },
               ),
+
               content: SizedBox(
                 width: double.maxFinite,
                 height: 350,
+
                 child: ListView.builder(
                   itemCount: filteredCurrencies.length,
+
                   itemBuilder: (context, index) {
                     String currency = filteredCurrencies[index];
 
@@ -808,26 +833,34 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
                         currencyFlags[currency] ?? "🏳️",
                         style: const TextStyle(fontSize: 24),
                       ),
+
                       title: Text(
                         currency,
+
                         style: TextStyle(
                           color: isDarkMode ? Colors.white : Colors.black,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
+
                       trailing: IconButton(
                         icon: Icon(
                           favoriteCurrencies.contains(currency)
                               ? Icons.star
                               : Icons.star_border,
+
                           color: Colors.amber,
                         ),
+
                         onPressed: () {
                           setDialogState(() {
                             toggleFavoriteCurrency(currency);
+
+                            sortFavoritesOnTop();
                           });
                         },
                       ),
+
                       onTap: () {
                         setState(() {
                           if (isFrom) {
@@ -841,6 +874,7 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
                         });
 
                         Navigator.pop(context);
+
                         convertCurrency();
                       },
                     );
