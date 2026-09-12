@@ -20,6 +20,18 @@ This project was built as a practical Flutter project to gain hands-on experienc
 
 ---
 
+## 📸 App Showcase
+
+<p align="center">
+  <img
+    src="./App_screenshots/app-showcase.png"
+    alt="Currency Converter App Showcase"
+    width="850"
+  />
+</p>
+
+---
+
 ## ✨ Features
 
 ### 💱 Currency Conversion
@@ -75,56 +87,6 @@ This project was built as a practical Flutter project to gain hands-on experienc
 
 ---
 
-## 📸 Screenshots
-
-### 🚀 Splash Screen
-
-<p align="center">
-  <img
-    src="./App_screenshots/splash-screen.png.jpg"
-    alt="Currency Converter Splash Screen"
-    width="300"
-  />
-</p>
-
----
-
-### 🌙 Home Screen — Dark Mode
-
-<p align="center">
-  <img
-    src="./App_screenshots/currency-converter-dark.png.jpg"
-    alt="Currency Converter Dark Mode"
-    width="300"
-  />
-</p>
-
----
-
-### 🔎 Currency Selection
-
-<p align="center">
-  <img
-    src="./App_screenshots/currency-selection.png.jpg"
-    alt="Currency Selection Screen"
-    width="300"
-  />
-</p>
-
----
-
-### ☀️ Home Screen — Light Mode
-
-<p align="center">
-  <img
-    src="./App_screenshots/currency-converter-light.png.jpg"
-    alt="Currency Converter Light Mode"
-    width="300"
-  />
-</p>
-
----
-
 ## 🛠️ Tech Stack
 
 | Technology | Purpose |
@@ -162,6 +124,14 @@ This project helped me gain practical experience with:
 
 ---
 
+## 📲 Download APK
+
+Try the latest Android release:
+
+[⬇️ Download Currency Converter APK](https://github.com/mayanksongade-byte/currency-converter-app/releases/download/v1.0.0/app-release.apk)
+
+---
+
 ## 📂 Project Structure
 
 ```text
@@ -186,10 +156,7 @@ currency-converter-app/
 │       └── currency_data.dart
 │
 ├── App_screenshots/
-│   ├── currency-converter-dark.png.jpg
-│   ├── currency-converter-light.png.jpg
-│   ├── currency-selection.png.jpg
-│   └── splash-screen.png.jpg
+│   └── app-showcase.png
 │
 ├── assets/
 │
